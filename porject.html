@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html x-data="darkMode" lang="fa" dir="rtl" :class="{ 'dark' : darkMode }">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+
+
+</head>
+<style>
+@font-face {
+    font-family:" vazir";
+    src: url("../fonts/Vazir.eot");
+    src: url("../fonts/Vazir.eot?#iefix") format("embedded"),
+    url("../fonts/Vazir.woff2") format("woff2"),
+    url("../fonts/Vazir.woff") format("woff"),
+    url("../fonts/Vazir.ttf") format("truetype")
+    ;
+}
+
+body{
+    font-family:"vazir" !important;
+    background: url(../porject-bootstrap.2/bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment:fixed;
+}
+
+.dark .dark-bg-body-dark{
+    background: url(../porject-bootstrap.2/bg-dark.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment:fixed;   
+}
+
+.lh-0{
+   line-height: 0; 
+}
+
+.darkmode-switch{
+   width: 2.5em !important;
+   height: 1.5rem !important; 
+}
+
+
+.dark .dark-text-white{
+    color: white !important;
+}
+ 
+
+/* Header */
+.Header{
+    padding-top:90px ;
+}
+
+
+
+
+.time-box {
+    border: 1.5px solid #ffffff;
+    backdrop-filter: blur(5px);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+  
+  .time-box span {
+    font-size: 32px;
+    font-weight: bold;
+   
+  }
+  
+  .time-box p {
+    margin-top: 5px;
+    font-size: 15px;
+   
+  }
+
+.social-links a{
+font-size: 20px;
+color: #fff;
+margin: 0 3px;
+border-radius: 50%;
+display: inline-flex;
+align-items: center;
+justify-content: center;
+width: 50px;
+height: 50px;
+border: 1px solid white;
+transition: all 3.0s;
+}
+
+.social-links a:hover{
+    background-color: #0d6efd;
+    border-color:  #0d6efd;
+    color: #fff;
+  
+}
+
+.social-links a .h-l{
+    line-height: 0;
+}
+
+
+/* content Us */
+
+.content hr{
+    width: 80px;
+    height: 10%;
+    color: #000;
+}
+
+.content .card{
+border-top: 4px solid #0d6efd;
+border-bottom: 4px solid #0d6efd;
+padding: 30px;
+border-radius: 0.25rem;
+background: rgba(255, 255, 255, 0.178);
+width: 97%;
+box-shadow: 0 0 24px 0 rgb(0 0 0 / 12%);
+}
+
+.content .card i{
+   font-size: 20px;
+   color: #fff;
+   width: 40px;
+   height: 40px;
+   background-color: rgba(0,0,0,0.1);
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   border-radius: 50px; 
+   transition: all 2.0s;
+}
+
+
+.content .card i:hover{
+    background: #0d6efd;
+    background-color: #0d6efd;
+    color: #fff;
+ }
+ 
+
+.text-gray{
+    color: #44494e !important;
+}
+
+/* iTyped.js */
+.ityped-cursor {
+    font-size: 2.2rem;
+    opacity: 1;
+    -webkit-animation: blink 0.3s infinite;
+    -moz-animation: blink 0.3s infinite;
+    animation: blink 0.3s infinite;
+    animation-direction: alternate;
+}
+
+@keyframes blink {
+    100% {
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes blink {
+    100% {
+        opacity: 0;
+    }
+}
+
+@-moz-keyframes blink {
+    100% {
+        opacity: 0;
+    }
+}
+
+
+
+
+</style>
+<body class="dark-bg-body-dark">
+   
+
+  <!-- Switch Dark Mode -->
+   <div class="d-flex align-itms-center justify-content-end p-2">
+    <i class="bi bi-brightness-high-fill fs-4 me-2 m-2 lh-0 dark-text-white"></i>
+<div class="form-check form-switch">
+  <input x-model="darkMode" class="form-check-input darkmode-switch" type="checkbox" id="flexSwitchCheckDefault">
+</div>
+<i class="bi bi-moon-stars-fill fs-5 ms-2 lh-0 m-2 dark-text-white"></i>
+   </div>
+
+
+   <!-- Header -->
+    <header class="Header text-gray dark-text-white">
+      <div class="container">
+        <div class="row text-center">
+          <h2 class="fw-bold mb-4">
+            <span class="text-primary">قرعکشی</span> <span id="text"></span></h2>
+          <p class="lh-lg">برای برنده شدن تنها کافیه منتظر باز شدن سایت باشید تا ثبت نام کنید 
+          </p>
+        </div>
+
+
+        <div class="row justify-content-center mt-3 d-flex">
+ 
+            <div class="time-box col-2 mt-2  m-2">
+              <span id="days">00</span>
+              <p>روز</p>
+            </div>
+            <div class="time-box  col-2 mt-2 m-2">
+              <span id="hours">00</span>
+              <p>ساعت</p>
+            </div>
+            <div class="time-box  col-2 mt-2 m-2">
+              <span id="minutes">00</span>
+              <p>دقیقه</p>
+            </div>
+            <div class="time-box  col-2 mt-2 m-2">
+              <span id="seconds">00</span>
+              <p>ثانیه</p>
+            </div>
+          </div>
+    
+  
+    
+      <div class="row justify-content-center mt-5">
+<div class="col-11">
+  <h6 class="mb-4 text-center">
+    هرچه دوستانت بیشتر، شانس تو بیشتر! شرکت کن و جایزه‌ها را ببر
+  </h6>
+</div>
+
+<div class="col-12 col-sm-5 col-lg-3">
+  <div class="input-group mb-3">
+    <input type="text" class="form-control">
+    <button class="btn btn-primary" type="button">عضویت</button>
+  </div>
+</div>
+
+<div class="col-12 text-center social-links mt-3">
+  <a href="#"><i class="bi bi-twitter h-l"></i></a>
+  <a href="#"><i class="bi bi-facebook h-l"></i></a>
+  <a href="#"><i class="bi bi-instagram h-l"></i></a>
+  <a href="#"><i class="bi bi-linkedin h-l"></i></a>
+</div>
+      </div>
+   
+  
+     
+      </div>
+    </header>
+
+
+    <!-- section -->
+<section class="content">
+<div class="container my-5">
+  <div class="row text-center justify-content-center">
+    <h2 class="fw-bold">ارتباط با ما</h2>
+    <hr>
+  </div>
+
+  <div class="row gy-3">
+   <div class="col-lg-5">
+<div class="card">
+  <div class="d-flex align-itms-center">
+    <i class="bi bi-geo-alt me-3"></i>
+    <div>
+    <h5 class="fw-bold mb-0">ادرس:</h5>
+    <p class="mb-0">هرات: صوفی اباد جاده دوم</p>
+  </div>
+  </div>
+
+
+  <div class="d-flex align-itms-center my-4">
+    <i class="bi bi-envelope me-3 "></i>
+    <div>
+    <h5 class="fw-bold mb-0">ایمیل:</h5>
+    <p class="mb-0">dianaqazizah@gmile.com</p>
+  </div>
+  </div>
+
+
+  <div class="d-flex align-itms-center">
+    <i class="bi bi-phone me-3"></i>
+    <div>
+    <h5 class="fw-bold mb-0">شماره تماس:</h5>
+    <p class="mb-0">0790965164</p>
+  </div>
+  </div>
+
+  <!-- <div id="map" style="height: 321px; color: mt-4;">
+
+  </div> -->
+
+
+  <div class="div-map mt-3">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4953.189001787516!2d62.21588452591453!3d34.363882951544234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f3ce6f4d4792dc9%3A0xcb66282019e94d62!2sArg%20Hotel!5e0!3m2!1sen!2s!4v1758691549493!5m2!1sen!2s" 
+    width="100%" height="295" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
+</div>
+   </div>
+   <div class="col-lg-7">
+    <form action="#" class="card">
+            <div class="row gy-3">
+        <div class="col-md-6">
+                      <label for="" class="form-label">نام</label>
+                      <input type="text" class="form-control">
+        </div>
+
+        <div class="col-md-6">
+                      <label for="" class="form-label">ایمیل</label>
+                      <input type="email" class="form-control">
+        </div>
+
+        <div class="col-md-12">
+                      <label for="" class="form-label">موضوع</label>
+                      <input type="text" class="form-control">
+        </div>
+
+
+            <div class="col-md-12">
+                      <label for="" class="form-label">موضوع پیام</label>
+                     <textarea name="text" class="form-control" cols="30" rows="10"></textarea>
+            </div>
+
+            <div class="col-md-12 text-center">
+              <button class="btn btn-primary">ارسال پیام</button>
+            </div>
+           </div>
+          </form>
+   </div> 
+  </div>
+</div>
+</section>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+   
+    <script src="https://unpkg.com/ityped@1.0.3"></script>
+
+<script>
+   const textElement = document.querySelector('#text');
+   ityped.init(textElement, { strings: [  'ما اکتبر ...' , 'ما اکتبر ...', ] });
+</script>
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.15.0/dist/cdn.min.js"></script>
+    <script>
+      document.addEventListener('alpine:init', () => {
+          Alpine.data('darkMode', () => ({
+            darkMode: false,
+   init() {
+
+    if(localStorage.theme === 'dark'){
+      this.darkMode = true;
+    }else{
+      this.darkMode = false; 
+    }
+
+
+    this.$watch('darkMode' , (value) => {
+if(value){
+
+  localStorage.theme = 'dark';
+}
+
+else{
+  localStorage.theme = 'light'; 
+}
+
+
+    })
+   }
+           
+          }))
+      
+
+        })
+ </script>
+
+ <script src="script.js"></script>
+
+
+<script src="script.js"></script>
+
+
+<script>
+  const targetDate = new Date();
+targetDate.setDate(targetDate.getDate() + 2);
+
+function updateCountdown() {
+  const now = new Date().getTime();
+  const distance = targetDate - now;
+
+  if (distance <= 0) {
+    document.querySelector(".countdown").innerHTML = "<h3>تخفیف‌ها شروع شدند 🎉</h3>";
+    clearInterval(timerInterval);
+    return;
+  }
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  document.getElementById("days").textContent = days.toString().padStart(2, "0");
+  document.getElementById("hours").textContent = hours.toString().padStart(2, "0");
+  document.getElementById("minutes").textContent = minutes.toString().padStart(2, "0");
+  document.getElementById("seconds").textContent = seconds.toString().padStart(2, "0");
+}
+
+const timerInterval = setInterval(updateCountdown, 1000);
+updateCountdown();
+</script>
+
+
+<script>
+  let mymap = L.map('map').setView([51.505, -0.09], 13);
+
+const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 19,
+  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+
+const marker = L.marker([51.5, -0.09]).addTo(map);
+
+const circle = L.circle([51.508, -0.11], {
+  color: 'red',
+  fillColor: '#f03',
+  fillOpacity: 0.5,
+  radius: 500
+}).addTo(map);
+</script>
+</body>
+</html>
